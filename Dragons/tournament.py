@@ -4,7 +4,7 @@ from enemies import *
 from hero import *
 
 
-def annoying_input_int(message =''):
+def annoying_input_int(message=''):
     answer = None
     while answer == None:
         try:
@@ -36,6 +36,7 @@ def game_tournament(hero, dragon_list):
         print('Ваш накопленный опыт:', hero._experience)
     else:
         print('К сожалению, Вы проиграли...')
+
 
 def start_game():
 
