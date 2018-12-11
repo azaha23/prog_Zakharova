@@ -1,5 +1,6 @@
 import graphics as gr
 from random import *
+import time
 
 window = gr.GraphWin("Landscape", 500, 500)
 window.setBackground("#191970")
@@ -52,24 +53,38 @@ def draw_snow(m, n):
         dy1 = randint(-15, 15)
         dx2 = randint(-15, 15)
         dy2 = randint(-15, 15)
-        leaf = gr.Polygon(gr.Point(m, n), gr.Point(m + dx1, n + dy1),
+        snow = gr.Polygon(gr.Point(m, n), gr.Point(m + dx1, n + dy1),
                           gr.Point(m + dx2, n + dy2))
-        leaf.setOutline('#E0FFFF')
-        leaf.setFill('#E0FFFF')
-        leaf.draw(window)
+        snow.setOutline('#E0FFFF')
+        snow.setFill('#E0FFFF')
+        snow.draw(window)
+        return snow
+
+
+snows = []
 
 
 def draw_landscape():
     draw_surface()
     draw_moon()
-    draw_cloud(300, 100)
-    draw_cloud(100, 150)
-    draw_cloud(270, 200)
-    draw_cloud(400, 190)
     draw_tree(370, 250, 450, 300)
     draw_tree(120, 200, 400, 250)
+
+    for w in range(3):
+        draw_cloud(randint(50, 450), randint(20, 200))
+
     for b in range(70):
-        draw_snow(randint(10, 490), randint(20, 470))
+        sn = draw_snow(randint(10, 490), randint(20, 470))
+        snows.append(sn)
+
+    animation()
+
+
+def animation():
+    for t in range(500):
+        for s in snows:
+            time.sleep(0.001)
+            s.move(0, 2)
 
 
 draw_landscape()
