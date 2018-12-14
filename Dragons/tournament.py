@@ -1,5 +1,6 @@
 # coding: utf-8
 # license: GPLv3
+
 from enemies import *
 from hero import *
 
@@ -38,6 +39,30 @@ def game_tournament(hero, dragon_list):
         print('К сожалению, Вы проиграли...')
 
 
+def game_troll_tournament(hero, troll_list):
+    for troll in troll_list:
+        print('Вышел', troll._color,'!')
+        while troll.is_alive() and hero.is_alive():
+            print('Вопрос:', troll.question())
+            answer = annoying_input_int('Ответ:')
+
+            if troll.check_answer(answer):
+                hero.attack(troll)
+                print('Верно! \n** тролль кричит от боли **')
+            else:
+                troll.attack(hero)
+                print('Ошибка! \n** вам нанесён удар... **')
+        if troll.is_alive():
+            break
+        print(troll._color, 'повержен!\n')
+
+        if hero.is_alive():
+            print('Поздравляем! Вы победили!')
+            print('Ваш накопленный опыт:', hero._experience)
+        else:
+            print('К сожалению, Вы проиграли...')
+
+
 def start_game():
 
     try:
@@ -45,11 +70,16 @@ def start_game():
         print('Представьтесь, пожалуйста: ', end = '')
         hero = Hero(input())
 
+        troll_number = 3
+        troll_list = generate_troll_list(troll_number)
         dragon_number = 3
         dragon_list = generate_dragon_list(dragon_number)
         assert(len(dragon_list) == 3)
         print('У Вас на пути', dragon_number, 'драконов!')
         game_tournament(hero, dragon_list)
+        assert (len(troll_list) == 3)
+        print('У Вас на пути', troll_number, 'троллей!')
+        game_troll_tournament(hero, troll_list)
 
     except EOFError:
         print('Поток ввода закончился. Извините, принимать ответы более невозможно.')
