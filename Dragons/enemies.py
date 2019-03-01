@@ -111,11 +111,11 @@ class BlackDragon(Dragon):
         return self.__quest
 
 
-class CleverTroll(Troll):
+class GuessTroll(Troll):
     def __init__(self):
         self._health = 100
         self._attack = 15
-        self._color = 'умный тролль'
+        self._color = 'уродливый тролль'
 
     def question(self):
         x = randint(1, 5)
@@ -124,11 +124,11 @@ class CleverTroll(Troll):
         return self.__quest
 
 
-class TrollBrute(Troll):
+class HugeTroll(Troll):
     def __init__(self):
         self._health = 100
         self._attack = 15
-        self._color = 'сильный тролль'
+        self._color = 'огромный тролль'
 
     def question(self):
         x = randint(1, 100)
@@ -137,11 +137,11 @@ class TrollBrute(Troll):
         return self.__quest
 
 
-class SuperCleverTroll(Troll):
+class Shrek(Troll):
     def __init__(self):
         self._health = 100
         self._attack = 15
-        self._color = 'тролль из физтеха'
+        self._color = 'Шрек'
 
     def question(self):
         x = randint(1, 100)
@@ -151,4 +151,4 @@ class SuperCleverTroll(Troll):
 
 
 enemy_dragon_types = [GreenDragon, RedDragon, BlackDragon]
-enemy_troll_types = [CleverTroll, SuperCleverTroll, TrollBrute]
+enemy_troll_types = [GuessTroll, HugeTroll, Shrek]
